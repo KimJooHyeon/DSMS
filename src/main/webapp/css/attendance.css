@@ -1,0 +1,104 @@
+@import url(global.css);
+
+.adimn-nav-wrap button {
+	color: #ffffff;
+}
+
+.admin-nav-wrap.nav-hidden {
+	height: 130px;
+}
+
+.attendance-nav a {
+	color: #ffffff;
+}
+
+main {
+	display: grid;
+	grid-template-columns: 1fr 2.5fr;
+}
+
+.list {
+	background: #F3F6F9;
+	display: flex;
+	flex-direction: column;
+	padding: 20px;
+}
+
+.list input {
+	margin: 0 auto;
+	outline: none;
+	border: none;
+	background: #E0E0E0;
+	padding: 10px;
+	width: 70%;
+	font-size: 24px;
+	margin-bottom: 25px;
+}
+
+.list input::-webkit-input-placeholder {
+	text-align: center;
+}
+
+.list ul {
+	height: 85vh;
+	overflow: scroll;
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+}
+
+.list ul::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera*/
+}
+
+.list ul li {
+	font-size: 24px;
+	cursor: pointer;
+	margin-bottom: 20px;
+	color: #999999;
+	transition: color .2s ease;
+}
+
+.list ul li:hover {
+	color: #000000;
+}
+
+.list ul li.clicked {
+	color: #000000;
+}
+
+.detail {
+	box-shadow: -20px 0px 20px rgba(0, 0, 0, 0.1);
+	padding: 50px;
+	text-align: right;
+}
+
+#recruitGrid {
+	height: 85vh;
+	overflow: scroll;
+	margin-bottom: 20px;
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+}
+
+#recruitGrid::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera*/
+}
+
+
+.download-btn {
+	font-size: 18px;
+	background: none;
+	border: 1px solid #999999;
+	padding: 5px 10px;
+	color: #999999;
+	border-radius: 5px;
+	transition: color .2s ease;
+}
+
+.download-btn:hover {
+	color: #000000;
+}
+
+.hidden {
+	display: none;
+}

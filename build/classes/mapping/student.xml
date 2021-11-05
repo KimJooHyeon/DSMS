@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap 
+PUBLIC "-//ibatis.apache.org//DTD Sql Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+	
+<sqlMap namespace="student">
+			
+	<insert id="insertStudent" parameterClass="studentVO">
+		INSERT INTO student (student_idx, student_name, student_addr, student_age, student_tel, student_education, student_graduate)
+		VALUES (#student_idx#, #student_name#, #student_addr#, #student_age#, #student_tel#, #student_education#, #student_gradute#)
+	</insert>
+	
+	
+	<delete id="deleteStudent" parameterClass="studentVO">
+		DELETE FROM student WHERE student_idx = #student_idx#
+		
+	</delete>
+	
+	<select id="selectAllStudent" resultClass="studentVO">
+		select * from student where student_graduate = 'N'
+	</select>
+	
+	<select id="selectOneStudent" parameterClass="int" resultClass="studentVO">
+		select * 
+		  from student 
+		 where student_idx = #student_idx#
+	</select>
+	
+	<update id="updateStudentInfo" parameterClass="studentInfoVO">
+		UPDATE STUDENT
+		   SET STUDENT_ADDR = #student_addr#,
+		       STUDENT_TEL = #student_tel#,
+		       STUDENT_EDUCATION = #student_education#,
+		       STUDENT_GRADUATE = #student_graduate#
+		 WHERE STUDENT_IDX = #student_idx#
+	</update>
+	
+	<update id="updateStudentProject" parameterClass="studentInfoVO">
+		UPDATE PROJECT_RESULT
+		   SET BASIC_PROJECT = #basic_project#,
+		   	   MIDDLE_PROJECT = #middle_project#,
+		   	   FINAL_PROJECT = #final_project#
+		 WHERE STUDENT_IDX = #student_idx#
+	</update>
+	
+	<update id="updateStudentLicense" parameterClass="studentInfoVO">
+		UPDATE LICENSE
+		   SET LICENSE_NAME = #license_name#
+		 WHERE STUDENT_IDX = #student_idx#
+	</update>
+	
+	<select id="classRoomStudentInfo" resultClass="studentInfoVO" parameterClass="int">
+		SELECT s.STUDENT_NAME,
+			   s.STUDENT_AGE,
+			   cr.CLASS_NUMBER,
+			   s.STUDENT_ADDR,
+			   s.STUDENT_TEL,
+			   l.LICENSE_NAME,
+			   s.STUDENT_EDUCATION,
+			   pr.BASIC_PROJECT,
+			   pr.MIDDLE_PROJECT,
+			   pr.FINAL_PROJECT,
+			   s.STUDENT_GRADUATE,
+			   s.STUDENT_IDX
+		  FROM STUDENT s, CLASS_ROOM cr, LICENSE l, PROJECT_RESULT pr
+		 WHERE s.STUDENT_IDX = cr.STUDENT_IDX
+		   AND cr.STUDENT_IDX = l.STUDENT_IDX
+		   AND l.STUDENT_IDX = pr.STUDENT_IDX
+		   AND cr.CLASS_NUMBER = #room#
+	</select>
+	
+	<select id="getStudentNames" parameterClass="int" resultClass="studentVO">
+		SELECT s.STUDENT_NAME,
+		       s.STUDENT_IDX
+		  FROM STUDENT s, CLASS_ROOM cr 
+		 WHERE s.STUDENT_IDX = cr.STUDENT_IDX
+		   AND cr.CLASS_NUMBER = #room#
+	</select>
+	
+	<select id="adminStudentNames" resultClass="studentVO">
+		SELECT s.STUDENT_NAME,
+		       s.STUDENT_IDX
+		  FROM STUDENT s, CLASS_ROOM cr 
+		 WHERE s.STUDENT_IDX = cr.STUDENT_IDX
+	</select>
+	
+	<select id="searchStudent" resultClass="studentVO" parameterClass="string">
+		SELECT s.STUDENT_NAME,
+			   s.STUDENT_IDX
+		  FROM STUDENT s, CLASS_ROOM c
+		 WHERE s.STUDENT_NAME LIKE '%'||#name#||'%'
+		   AND s.STUDENT_IDX = c.STUDENT_IDX
+	</select>
+	
+	<select id="attendDetail" parameterClass="int" resultClass="attendanceVO">
+		SELECT *
+		  FROM ATTENDANCE
+		 WHERE STUDENT_IDX = #idx#
+	</select>
+	
+	<update id="modifyStudentAttend" parameterClass="attendanceVO">
+		UPDATE ATTENDANCE
+		   SET ATTEND_IN_TIME = TO_DATE(#attend_in_time#, 'yyyymmddHH24MI'),
+		       ATTEND_OUT_TIME = TO_DATE(#attend_out_time#, 'yyyymmddHH24MI'),
+		       ATTEND_DIVISION = #attend_division#
+		 WHERE STUDENT_IDX = #student_idx#
+		   AND ATTEND_DATE = #attend_date#
+	</update>
+	
+	<select id="adminStudentCounsel" resultClass="studentVO">
+		SELECT s.STUDENT_NAME,
+			   s.STUDENT_IDX
+		  FROM STUDENT s, CLASS_ROOM cr
+		 WHERE s.STUDENT_IDX = cr.STUDENT_IDX
+	</select>
+	
+	<select id="teacherStudentCounsel" resultClass="studentVO" parameterClass="int">
+		SELECT s.STUDENT_NAME,
+			   s.STUDENT_IDX
+		  FROM STUDENT s, CLASS_ROOM cr
+		 WHERE s.STUDENT_IDX = cr.STUDENT_IDX
+		   AND cr.MEMBER_IDX = #idx#
+	</select>
+	
+	<select id="searchCounselStudent" resultClass="studentVO" parameterClass="string">
+		SELECT s.STUDENT_NAME,
+			   s.STUDENT_IDX
+		  FROM STUDENT s, CLASS_ROOM cr
+		 WHERE s.STUDENT_IDX = cr.STUDENT_IDX
+		   AND s.STUDENT_NAME LIKE '%'||#name#||'%'
+	</select>
+	
+	<select id="getPassApplicant" resultClass="applicantVO">
+		SELECT *
+		  FROM (SELECT *
+				  FROM APPLICANT
+				 WHERE applicant_pass = 'Y'
+				 ORDER by APPLICANT_SCORE)
+		 <![CDATA[where rownum <=25]]>
+	</select>
+	
+	<insert id="insertLicense" parameterClass="licenseVO">
+		INSERT INTO LICENSE values(
+			#student_idx#,
+			'없음'
+		)
+	</insert>
+	
+	<insert id="insertPR" parameterClass="projectResultVO">
+		INSERT INTO PROJECT_RESULT values(
+			#student_idx#,
+			0,
+			0,
+			0
+		)
+	</insert>
+
+</sqlMap>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

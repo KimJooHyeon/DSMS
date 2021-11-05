@@ -1,0 +1,140 @@
+@import url(global.css);
+
+:root{
+	--main-font: 20px;
+	--sub-font: 14px;
+	--large-padding: 20px;
+	--middle-padding: 10px;
+	--small-padding: 5px;
+}
+
+.my-nav a {
+	color: #ffffff;
+}
+
+/* My Page */
+main {
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.my-section {
+  width: 80vw;
+  height:80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.my-section .inner {
+  width: 80%;
+  height: 70%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+#my-frm {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  justify-items: center;
+  width: 80%;
+  height: 80%;
+}
+
+#my-frm > div {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+#my-frm > div:nth-child(1) {order: 1;}
+#my-frm > div:nth-child(2) {order: 3;}
+#my-frm > div:nth-child(3) {order: 5;}
+#my-frm > div:nth-child(4) {order: 7;}
+#my-frm > div:nth-child(5) {order: 2;}
+#my-frm > div:nth-child(6) {order: 4;}
+#my-frm > div:nth-child(7) {order: 6;}
+#my-frm > div:nth-child(8) {order: 8;}
+
+.label,
+#my-frm label {
+  color: #999999;
+  font-size: var(--main-font);
+  margin-bottom: 15px;
+}
+
+.id-wrap .user-id,
+.name-wrap .user-name,
+.job-wrap .user-job {
+  font-size: var(--main-font);
+}
+
+.pw-icon-wrap,
+.pw-ck-icon-wrap,
+.phone-icon-wrap,
+.license-icon-wrap,
+.email-icon-wrap {
+  width: 80%;
+  position: relative;
+}
+
+#user-pw,
+#user-pw-ck,
+#user-phone,
+#user-license,
+#user-email {
+  width: 100%;
+  font-size: var(--sub-font);
+  padding: 5px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.pw-icon-wrap img,
+.pw-ck-icon-wrap img,
+.email-icon-wrap img,
+.license-icon-wrap .license-btn-wrap img,
+.phone-icon-wrap img {
+  width: 20px;
+  position: absolute;
+  top: 4px;
+  right: 5px;
+}
+
+.license-icon-wrap img {
+	top: -1px;
+}
+
+.license-btn-wrap {
+	position: absolute;
+	top: 15%;
+	right: 6px;
+}
+
+.license-btn-wrap button {
+  cursor: pointer;
+  color: #ffffff;
+  background: #446CB7;
+  padding: 5px;
+  border-radius: 5px;
+  font-size: 10px;
+}
+
+.hidden {
+  display: none;
+}
+
+.my-frm-btn {
+  width: 20%;
+  font-size: var(--main-font);
+  color: #ffffff;
+  background: #446CB7;
+  padding: 5px 0;
+  border-radius: 5px; 
+}

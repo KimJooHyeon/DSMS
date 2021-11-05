@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap 
+PUBLIC "-//ibatis.apache.org//DTD Sql Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+	
+<sqlMap namespace="schedule">
+			
+	<insert id="addSchedule" parameterClass="scheduleVO">
+		INSERT INTO SCHEDULE (
+			SCHEDULE_IDX,
+			MEMBER_IDX,
+			START_DATE,
+			END_DATE,
+			SCHEDULE_CONTENT,
+			TEXT_COLOR,
+			BACKGROUND_COLOR,
+			SCHEDULE_TYPE,
+			SCHEDULE_TITLE
+		) VALUES (
+			SCHEDULE_IDX_SEQ.NEXTVAL,
+			#member_idx#,
+			to_date(#start_date#, 'yyyy/mm/dd hh24:mi:ss'),
+			to_date(#end_date#, 'yyyy/mm/dd hh24:mi:ss'),
+			#schedule_content#,
+			#text_color#,
+			#background_color#,
+			#schedule_type#,
+			#schedule_title#
+		)
+	</insert>
+	
+	<select id="getMonthSchedule" parameterClass="ScheduleVO" resultClass="Schedule">
+		SELECT s.SCHEDULE_IDX,
+			   s.START_DATE,
+			   s.END_DATE,
+			   s.SCHEDULE_CONTENT,
+			   s.TEXT_COLOR,
+			   s.BACKGROUND_COLOR,
+			   s.SCHEDULE_TYPE,
+			   s.SCHEDULE_TITLE,
+			   s.MEMBER_IDX,
+			   m.MEMBER_NAME
+		  FROM SCHEDULE s, MEMBER m, (SELECT SCHEDULE_IDX AS cid
+		  								FROM SCHEDULE
+		  							   WHERE START_DATE BETWEEN TO_DATE(#start_date#, 'yyyy/mm/dd hh24:mi:ss') 
+										 					AND TO_DATE(#end_date#, 'yyyy/mm/dd hh24:mi:ss')
+										  OR END_DATE BETWEEN TO_DATE(#start_date#, 'yyyy/mm/dd hh24:mi:ss') 
+										  				  AND TO_DATE(#end_date#, 'yyyy/mm/dd hh24:mi:ss')) c
+		 WHERE s.MEMBER_IDX = m.MEMBER_IDX
+		   AND c.cid = s.SCHEDULE_IDX
+	</select>
+	
+	<delete id="delSchedule" parameterClass="int">
+		DELETE FROM SCHEDULE
+ 		 WHERE SCHEDULE_IDX = #idx#
+	</delete>
+	
+	<update id="modifySchedule" parameterClass="ScheduleVO">
+		UPDATE SCHEDULE
+		   SET START_DATE = #start_date#,
+		   	   END_DATE = #end_date#,
+		   	   SCHEDULE_CONTENT = #schedule_content#,
+		   	   TEXT_COLOR = #text_color#,
+		   	   BACKGROUND_COLOR = #background_color#,
+		   	   SCHEDULE_TYPE = #schedule_type#,
+		   	   SCHEDULE_TITLE = #schedule_title#
+		 WHERE SCHEDULE_IDX = #schedule_idx#
+		   AND MEMBER_IDX = #member_idx#
+	</update>
+	
+</sqlMap>

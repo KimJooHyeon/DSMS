@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap 
+PUBLIC "-//ibatis.apache.org//DTD Sql Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+	
+<sqlMap namespace="classRoom">
+
+	<insert id="insertClassRoom" parameterClass="classRoomVO">
+		INSERT INTO class_room (member_idx,
+								 student_idx,
+								 class_number)
+						VALUES (#member_idx#, 
+								#student_idx#,
+								#class_number#)
+	</insert>
+	
+	
+	<select id="selectClassRoomInfo" parameterClass="StudentOfClassRoomVO" resultClass="StudentOfClassRoomVO">
+			SELECT c.class_number,
+		   s.student_name,
+		   m.member_name,
+		   m.member_tel
+	  FROM CLASS_ROOM c, STUDENT s, MEMBER m 
+	 WHERE c.MEMBER_IDX = m.MEMBER_IDX AND 
+	 	   c.STUDENT_IDX = s.STUDENT_IDX AND 
+	 	   c.CLASS_NUMBER = #class_number#
+	</select>
+
+
+	<insert id="insertApplicant" parameterClass="classRoomVO">
+		INSERT INTO CLASS_ROOM values(
+			#member_idx#,
+			#student_idx#,
+			#class_number#
+		)
+	</insert>	
+</sqlMap>

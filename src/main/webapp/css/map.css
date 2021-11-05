@@ -1,0 +1,19 @@
+@import url(global.css);
+
+:root{
+	--main-font: 20px;
+	--sub-font: 14px;
+	--large-padding: 20px;
+	--middle-padding: 10px;
+	--small-padding: 5px;
+}
+
+.employ-nav a {
+	color: #ffffff;
+}
+
+main {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}

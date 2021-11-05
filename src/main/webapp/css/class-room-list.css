@@ -1,0 +1,34 @@
+@import url(global.css);
+
+.manage-nav button {
+	color: #ffffff;
+}
+
+.manage-nav .nav-hidden {
+	height: 200px;
+	padding-left: 20px;
+}
+
+.room-list-nav a {
+	color: #ffffff;
+}
+
+
+main {
+	height: 100vh;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+select {
+	align-self: flex-end;
+	margin-right: 3vw;
+	font-size: 20px;
+	margin-bottom: 10px;
+}
+
+#recruitGrid {
+	width: 80vw;
+}

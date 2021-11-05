@@ -1,0 +1,857 @@
+@import url(reset.css);
+
+/* Common */
+.body__container {
+  display: grid;
+  grid-template-columns: 1fr 2fr min-content;
+  height: 100vh;
+  transition: all .5s ease;
+}
+
+.body__container > * {
+  height: 100%;
+}
+
+.login-page-btn {
+  border-radius: 50px;
+  width: 190px;
+  background: #ffffff;
+  color: #000000;
+  text-align: center;
+  box-shadow: 0 15px 30px #99999940;
+  font-size: 18px;
+  padding: 15px 50px;
+}
+
+body .body__container .main-view-hidden {
+  display: none;
+}
+
+/* nav */
+
+/* Login Nav */
+nav .login-nav {
+  height: 100%;
+  background: #454E5F;
+  padding: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+}
+
+nav .login-nav::after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-image: url(../storage/img/Login-background.png);
+  background-size: cover;
+  background-position-x: -100px;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 100%;
+  opacity: .2;
+}
+
+.login-nav-top {
+  display: flex;
+  align-items: flex-end;
+}
+
+.login-nav-top a {
+  margin-right: 20px;
+}
+
+.title-wrap {
+  font-size: 22px;
+  color: #ffffff;
+}
+
+.title-wrap h1 {
+  margin-bottom: 10px;
+}
+
+.info-list {
+  font-size: 22px;
+  color: #ffffff;
+}
+
+.info-list li {
+  margin-bottom: 10px;
+  letter-spacing: .15em;
+}
+
+/* main */
+main {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Login Main */
+main .login {
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.login h2 {
+  color: #446CB7;
+  font-size: 32px;
+  line-height: 48px;
+  margin-bottom: 50px;
+}
+
+#login-frm {
+  display: flex;
+  flex-direction: column;
+  margin-left: 40px;
+  margin-bottom: 30px;
+  width: 84%;
+}
+
+#login-frm label{
+  font-size: 22px;
+  margin-bottom: 20px;
+  color: #888888;
+}
+
+#login-frm input {
+  padding: 10px 5px;
+  margin-bottom: 40px;
+  font-size: 22px;
+}
+
+input#login-pw {
+  margin-bottom: 20px;
+}
+
+.login-text {
+  align-self: center;
+  margin-bottom: 20px;
+  color: #ff0000;
+  font-size: 18px;
+}
+
+.robot {
+	display: flex;
+	justify-content: center;
+}
+
+.login-btn {
+  width: 440px;
+  background: #446CB7;
+  color: #ffffff;
+  font-size: 28px;
+  align-self: center;
+  border-radius: 5px;
+  padding: 10px 0;
+  margin-bottom: 20px;
+}
+
+.login-link-wrap {
+  margin-left: 40px;
+  width: 460px;
+  display: flex;
+  justify-content: space-around;
+}
+
+/* Sign Up Main */
+.sign-up {
+  width: 70%;
+}
+
+#sign-up-frm {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  justify-items: center;
+  margin-bottom: 30px;
+}
+
+#sign-up-frm > [class$="-wrap"]:nth-child(1){order: 1;}
+#sign-up-frm > [class$="-wrap"]:nth-child(2){order: 3;}
+#sign-up-frm > [class$="-wrap"]:nth-child(3){order: 5;}
+#sign-up-frm > [class$="-wrap"]:nth-child(4){order: 7;}
+#sign-up-frm > [class$="-wrap"]:nth-child(5){order: 9;}
+#sign-up-frm > [class$="-wrap"]:nth-child(6){order: 2;}
+#sign-up-frm > [class$="-wrap"]:nth-child(7){order: 4;}
+#sign-up-frm > [class$="-wrap"]:nth-child(8){order: 6;}
+#sign-up-frm > [class$="-wrap"]:nth-child(9){order: 8;}
+
+#sign-up-frm [class$="-wrap"] {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 90%;
+}
+
+#sign-up-frm [class$="-wrap"] label {
+  font-size: 22px;
+  margin-bottom: 25px;
+}
+
+#sign-up-frm [class$="-wrap"] input {
+  width: 100%;
+  padding: 5px 10px;
+  font-size: 22px;
+  margin-bottom: 12px;
+}
+
+#sign-up-frm [class$="-wrap"] input[type="radio"] {
+  width: auto;
+  padding: 0;
+}
+
+#sign-up-frm [class$="-wrap"] span {
+  margin-bottom: 25px;
+  font-size: 12px;
+}
+
+.job-title {
+  font-size: 22px;
+  margin-bottom: 25px;
+}
+
+#sign-up-frm .job-wrap label {
+  font-size: 16px;
+}
+
+#sign-up-frm .job-wrap .job-title ~ label {
+  margin-bottom: 5px;
+}
+
+#sign-up-frm [class$="-icon-wrap"] {
+  position: relative;
+  width: 100%;
+}
+
+[class$="-icon-wrap"] img {
+  position: absolute;
+  top: 13%;
+  right: 2%;
+}
+
+[class$="-icon-wrap"] [class$="-license"] {
+  position: absolute;
+  top: 12%;
+  right: 3%;
+  cursor: pointer;
+  color: #ffffff;
+  background: #446CB7;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+[class$="-icon-wrap"] .hidden {
+  display: none;
+}
+
+.sign-up-btn {
+  display: block;
+  margin: 0 auto;
+  width: 380px;
+  padding: 10px 0;
+  font-size: 32px;
+  background: #446CB7;
+  color: #ffffff;
+  border-radius: 5px;
+}
+
+/* Search Info */
+.search-info {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 50%;
+  width: 70%;
+}
+
+.search-info form {
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.search-info form [class$="-wrap"]{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  font-size: 22px;
+}
+
+.search-info form label {
+  margin-bottom: 25px;
+}
+
+.search-info form input {
+  font-size: 22px;
+  padding: 5px 10px;
+  margin-bottom: 25px;
+}
+
+[class^="print"] {
+  margin-bottom: 50px;
+  font-size: 22px;
+}
+
+.print-info {
+  text-align: center;
+  width: 100%;
+  line-height: 1.3;
+  font-size: 18px;
+}
+
+.search-info button {
+  display: block;
+  margin: 0 auto;
+  width: 100%;
+  padding: 10px 0;
+  font-size: 32px;
+  background: #446CB7;
+  color: #ffffff;
+  border-radius: 5px;
+}
+
+/* footer */
+.login-side-bar {
+  background: #454E5F;
+  position: relative;
+  width: 60px;
+  transition: width .5s ease;
+  overflow: hidden;
+}
+
+.login-side-bar.show-btn {
+  width: 210px;
+}
+
+.side-bar-btn-group {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 50px;
+}
+
+.side-bar-btn-group button {
+  margin-bottom: 20px;
+  color: #ffffff;
+  background: #446CB7;
+}
+
+.side-bar-btn-hidden {
+  display: none;
+}
+
+.login-side-bar::after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-image: url(../storage/img/Login-background.png);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 100%;
+  opacity: .2;
+  z-index: 0;
+}
+
+@media (max-width: 1800px) {
+  /* Common */
+.body__container {
+  grid-template-columns: .7fr 2fr min-content;
+}
+
+/* Login Nav */
+nav .login-nav {
+  padding: 30px;
+}
+
+.login-nav-top a {
+  margin-right: 15px;
+}
+
+.login-nav-top a img {
+  width: 90px;
+}
+
+.title-wrap {
+  font-size: 18px;
+}
+
+.title-wrap h1 {
+  font-size: 20px;
+  margin-bottom: 5px;
+}
+
+.info-list {
+  font-size: 16px;
+}
+
+/* Sign Up Main */
+.sign-up {
+  width: 80%;
+}
+
+#sign-up-frm [class$="-wrap"] span {
+  font-size: 14px;
+}
+
+[class^="print"] {
+  font-size: 16px;
+}
+
+/* footer */
+.login-side-bar.show-btn {
+  width: 260px;
+}
+}
+
+@media (max-width: 1440px) {
+  /* Login Nav */
+nav .login-nav {
+  padding: 20px;
+}
+
+.login-nav-top a img {
+  width: 60px;
+}
+
+.title-wrap {
+  font-size: 16px;
+}
+
+.info-list {
+  font-size: 14px;
+}
+
+.info-list li {
+  letter-spacing: .1em;
+}
+
+/* Login Main */
+main .login {
+  width: 60%;
+}
+
+#login-frm {
+  align-self: center;
+  padding-left: 10px;
+  padding-bottom: 50px;
+  margin: 0;
+}
+
+.login-link-wrap {
+  margin-left: 0;
+  align-self: center;
+}
+
+/* Sign Up Main */
+.sign-up {
+  width: 80%;
+}
+
+
+.sign-up-btn {
+  width: 300px;
+  font-size: 20px;
+}
+
+/* Search Info */
+.search-info {
+  width: 80%;
+}
+
+.search-info button {
+  display: block;
+  margin: 0 auto;
+  width: 100%;
+  padding: 10px 0;
+  font-size: 20px;
+  background: #446CB7;
+  color: #ffffff;
+  border-radius: 5px;
+}
+
+/* footer */
+.login-side-bar {
+  background: #454E5F;
+  position: relative;
+  width: 60px;
+  transition: width .5s ease;
+  overflow: hidden;
+}
+
+.login-side-bar.show-btn {
+  width: 210px;
+}
+
+.side-bar-btn-group {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 50px;
+}
+
+.side-bar-btn-group button {
+  margin-bottom: 20px;
+  color: #ffffff;
+  background: #446CB7;
+}
+
+.side-bar-btn-hidden {
+  display: none;
+}
+
+.login-side-bar::after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-image: url(../storage/img/Login-background.png);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 100%;
+  opacity: .2;
+  z-index: 0;
+}
+}
+
+@media (max-width: 1080px) {
+  /* Login Nav */
+.login-nav-top a img {
+  width: 40px;
+}
+
+.title-wrap {
+  font-size: 12px;
+}
+
+.info-list {
+  font-size: 8px;
+}
+
+/* Login Main */
+.login h2 {
+  font-size: 22px;
+  line-height: 1.3;
+  margin-bottom: 30px;
+}
+
+#login-frm label {
+  font-size: 20px;
+}
+
+#login-frm input {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+.login-text {
+  font-size: 16px;
+}
+
+.login-btn {
+  font-size: 22px;
+}
+
+.login-link-wrap button {
+  font-size: 16px;
+}
+
+/* Sign Up Main */
+#sign-up-frm {
+  margin-bottom: 10px;
+}
+
+#sign-up-frm [class$="-wrap"] label {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+#sign-up-frm [class$="-wrap"] input {
+  padding: 5px;
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+#sign-up-frm [class$="-wrap"] span {
+  margin-bottom: 10px;
+  font-size: 10px;
+}
+
+.job-title {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+#sign-up-frm .job-wrap label {
+  font-size: 12px;
+}
+
+[class$="-icon-wrap"] img {
+  width: 18px;
+}
+
+[class$="-icon-wrap"] [class$="-license"] {
+  font-size: 8px;
+}
+
+.sign-up-btn {
+  width: 200px;
+  font-size: 16px;
+}
+
+/* Search Info */
+.search-info {
+  width: 90%;
+}
+
+.search-info form [class$="-wrap"] {
+  font-size: 16px;
+}
+
+.search-info form label {
+  margin-bottom: 10px;
+}
+
+.search-info form input {
+  padding: 5px;
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+
+[class^="print"] {
+  font-size: 12px;
+  margin-bottom: 30px;
+}
+
+.search-info button {
+  font-size: 16px;
+}
+
+/* footer */
+.login-side-bar.show-btn {
+  width: 180px;
+}
+
+.side-bar-btn-group button {
+  font-size: 14px;
+  width: 140px;
+  padding: 10px 0 ;
+}
+}
+
+@media (max-width: 900px) {
+  /* Common */
+.body__container {
+  grid-template-columns: 2fr min-content;
+}
+
+/* nav */
+nav {
+  display: none;
+}
+
+/* main */
+main {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Login Main */
+main .login {
+  width: 80%;
+}
+
+.login h2 {
+  font-size: 16px;
+  line-height: 20px;
+  margin-bottom: 30px;
+}
+
+#login-frm {
+  padding-bottom: 30px;
+}
+
+#login-frm label{
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+#login-frm input {
+  padding: 5px;
+  margin-bottom: 10px;
+  font-size: 12px;
+}
+
+input#login-pw {
+  margin-bottom: 5px;
+}
+
+.login-text {
+  margin-bottom: 10px;
+  font-size: 12px;
+}
+
+.login-btn {
+  width: 260px;
+  font-size: 14px;
+  padding: 5px 0;
+}
+
+.login-page-btn {
+  border-radius: 50px;
+  width: 100px;
+  padding: 5px 0;
+}
+
+.login-link-wrap {
+  width: 100%;
+}
+
+.login-link-wrap button {
+  font-size: 12px;
+}
+
+/* Sign Up Main */
+.sign-up {
+  width: 90%;
+}
+
+#sign-up-frm {
+  margin-bottom: 10px;
+}
+
+#sign-up-frm [class$="-wrap"] label {
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+#sign-up-frm [class$="-wrap"] input {
+  width: 100%;
+  padding: 5px;
+  font-size: 10px;
+  margin-bottom: 8px;
+}
+
+#sign-up-frm [class$="-wrap"] span {
+  margin-bottom: 10px;
+  font-size: 6px;
+}
+
+.job-title {
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+#sign-up-frm .job-wrap label {
+  font-size: 10px;
+}
+
+#sign-up-frm .job-wrap .job-title ~ label {
+  margin-bottom: 5px;
+}
+
+[class$="-icon-wrap"] img {
+  width: 12px;
+  top: 19%;
+}
+
+[class$="-icon-wrap"] [class$="-license"] {
+  padding: 2px;
+  font-size: 6px;
+  top: 18%;
+}
+
+.sign-up-btn {
+  width: 100%;
+  padding: 5px 0;
+  font-size: 12px;
+}
+
+/* Search Info */
+.search-info {
+  width: 90%;
+}
+
+.search-info form [class$="-wrap"]{
+  font-size: 12px;
+}
+
+.search-info form label {
+  margin-bottom: 10px;
+}
+
+.search-info form input {
+  font-size: 10px;
+  padding: 5px;
+  margin-bottom: 10px;
+}
+
+[class^="print"] {
+  margin-bottom: 20px;
+  font-size: 8px;
+}
+
+.print-info {
+  font-size: 6px;
+}
+
+.search-info button {
+  padding: 5px 0;
+  font-size: 10px;
+}
+
+/* footer */
+.login-side-bar {
+  width: 30px;
+  transition: width .5s ease;
+}
+
+.login-side-bar.show-btn {
+  width: 80px;
+  padding: 0 10px;
+}
+
+.side-bar-btn-group button {
+  padding: 5px;
+  font-size: 8px;
+  width: 60px;
+}
+
+@media (max-width: 320px) {
+  .login-side-bar {
+    width: 30px;
+    transition: width .5s ease;
+  }
+  
+  .login-side-bar.show-btn {
+    width: 40px;
+    padding: 0;
+  }
+  
+  .side-bar-btn-group button {
+    padding: 2px;
+    font-size: 4px;
+    width: fit-content;
+  }
+}
+}

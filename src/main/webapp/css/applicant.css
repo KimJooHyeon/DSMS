@@ -1,0 +1,53 @@
+@import url(global.css);
+
+.admin-open {
+	color: #ffffff;
+}
+
+.admin-nav-wrap.nav-hidden {
+	height: 130px;
+}
+
+.applicant-nav a {
+	color: #ffffff;
+}
+
+main {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.btn-wrap {
+	width: 90%;
+	margin-bottom: 20px;
+	text-align: right;
+}
+
+.btn-wrap button {
+	font-size: 20px;
+	padding: 5px 10px;
+	color: #999999;
+	background: none;
+	border: 1px solid #999999;
+	border-radius: 5px;
+	transition: color .2s ease;
+}
+
+.btn-wrap button:hover {
+	color: #000000;
+}
+
+.grid-wrap {
+	margin: 0 auto;
+	height: 90vh;
+	width: 80vw;
+	overflow: scroll;
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+}
+
+.grid-wrap::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera*/
+}

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap 
+PUBLIC "-//ibatis.apache.org//DTD Sql Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+	
+<sqlMap namespace="attendance">
+	<insert id="insertAttendance" parameterClass="attendanceVO">
+		INSERT INTO attendance (
+							student_idx,
+							attend_date,
+							attend_in_time, 
+							attend_out_time, 
+							attend_division)
+					VALUES (#student_idx#, 
+								default, 
+								default, 
+								default, 
+								#attend_division#)
+	</insert>
+
+	<update id="updateAttendance" parameterClass="attendanceVO">
+		UPDATE attendance
+		   SET attend_date = #attend_date#, 
+		   	   attend_in_time = #attend_in_time#,
+			   attend_out_time = #attend_out_time#, 
+			   attend_division = #attend_division#
+		 WHERE student_idx = #student_idx#
+	</update>
+	
+	<delete id="deleteAttendance" parameterClass="attendanceVO">
+		            DELETE FROM attendance
+		 					WHERE student_idx = 500 
+                  			AND (select attend_date from attendance
+                  				 where attend_date like #attend_date#)
+                = #attend_date#
+	</delete>
+
+	<select id="selectAllAttendance" resultClass="attendanceVO">
+		SELECT * FROM attendance
+	</select>
+	
+	<select id="selectAllAttendanceStudentName" resultClass="String">
+		SELECT s.student_name FROM STUDENT s, ATTENDANCE a 
+		 		WHERE s.STUDENT_IDX = a.STUDENT_IDX 
+	</select>
+	
+	<select id="selectOneAttendance" resultClass="attendanceVO">
+		SELECT * FROM attendance where student_idx = #student_idx#
+	</select>
+	
+	<select id="selectAllAttendanceStudentNamePaging" resultClass="attendanceVO" parameterClass="map">
+					SELECT s.student_name
+				  FROM STUDENT s, ATTENDANCE a 
+			 	 WHERE s.STUDENT_IDX = a.STUDENT_IDX;
+		SELECT rownum,
+			   s.STUDENT_NAME 
+		  FROM (SELECT s.STUDENT_NAME
+		  		  FROM STUDENT s
+		  		 ORDER BY s.STUDENT_NAME) s
+		 WHERE rownum BETWEEN #first# AND #second#
+	</select>
+	
+	<select id="selectAllAttendanceCount" resultClass="int">
+		select count(*)
+		  from attendance
+	</select>
+	
+</sqlMap>

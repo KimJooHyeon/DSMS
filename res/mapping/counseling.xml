@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap 
+PUBLIC "-//ibatis.apache.org//DTD Sql Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+	
+<sqlMap namespace="counseling">
+
+	<insert id="insertCounseling" parameterClass="counselingVO">
+		INSERT INTO counseling(
+			counseling_idx,
+		  	member_idx,
+		  	student_idx,
+		  	counseling_title, 
+		  	counseling_date, 
+		  	counseling_content
+		) VALUES (
+		  	counseling_idx_seq.nextval, 
+			#teacher_idx#, 
+			#student_idx#, 
+			#counseling_title#, 
+			sysdate,
+			#counseling_content#
+		)
+	</insert>
+
+	<update id="updateCounseling" parameterClass="counselingVO">
+		UPDATE counseling
+		   SET counseling_title = #counseling_title#,
+		       counseling_date = sysdate,
+		       counseling_content = #counseling_content#
+		 WHERE counseling_idx = #counseling_idx#
+	</update>
+	
+	<delete id="deleteCounseling" parameterClass="int">
+		DELETE FROM counseling 
+		 WHERE counseling_idx = #idx#
+	</delete>
+	
+	<select id="selectAllCounseling" resultClass="counselingVO" parameterClass="int">
+		select COUNSELING_IDX,
+			   MEMBER_IDX,
+			   STUDENT_IDX,
+			   COUNSELING_TITLE,
+			   COUNSELING_DATE,
+			   COUNSELING_CONTENT
+		  from counseling 
+		 where student_idx = #idx#
+	</select>
+	
+	<select id="selectOneCounseling" parameterClass="int" resultClass="counselingNameVO">
+		select * 
+		  from counseling c, STUDENT s
+		 where counseling_idx = #idx#
+		   AND c.STUDENT_IDX = s.STUDENT_IDX
+	</select>
+	
+	
+</sqlMap>

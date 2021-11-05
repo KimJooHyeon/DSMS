@@ -1,0 +1,63 @@
+@import url("./global.css");
+
+.manage-nav a {
+	color: #ffffff;
+}
+
+section {
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.table-wrap {
+  width: 80%;
+  height: 80vh;
+  overflow: auto;
+}
+
+.table-wrap button {
+  display: block;
+  margin-left: auto;
+  margin-bottom: 10px;
+  font-size: 18px;
+  padding: 5px 10px;
+  background: none;
+  border: 1px solid #000000;
+  color: #999999;
+  transition: color .1s ease;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.table-wrap button:hover {
+  color: #000000;
+}
+
+table {
+  border: 1px solid #999999;
+  width: 100%;
+  text-align: center;
+  overflow: scroll;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+table::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera*/
+}
+
+thead {
+  background: #999999;
+  color: #ffffff;
+}
+
+thead * {
+	font-size: 18px;
+	padding: 10px;
+}
+
+tbody tr td{
+  padding: 10px;
+}

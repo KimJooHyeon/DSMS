@@ -1,0 +1,54 @@
+@import url(global.css);
+
+.student-open {
+	color: #ffffff;
+}
+
+.student-nav-wrap.nav-hidden {
+	height: 100px;
+}
+
+.student-info-nav a {
+	color: #ffffff;
+}
+
+section {
+	padding: 30px;
+	text-align: right;
+}
+
+.room-number-wrap {
+	text-align: left;
+	margin-bottom: 10px;
+}
+
+.room {
+	font-size: 20px;	
+	padding: 0 10px;
+}
+
+#recruitGrid {
+	height: 80vh;
+	overflow: scroll;
+	margin-bottom: 10px;
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+}
+
+#recruitGrid::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera*/
+}
+
+.modify-btn {
+	font-size: 18px;
+	background: none;
+	border: 1px solid #999999;
+	padding: 5px 10px;
+	color: #999999;
+	border-radius: 5px;
+	transition: color .2s ease;
+}
+
+.modify-btn:hover {
+	color: #000000;
+}

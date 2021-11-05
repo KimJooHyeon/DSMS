@@ -1,0 +1,139 @@
+@import url(global.css);
+
+.student-nav-wrap button {
+	color: #ffffff;
+}
+
+.student-nav-wrap.nav-hidden {
+	height: 100px;
+}
+
+.student-cons-nav a {
+	color: #ffffff;
+}
+
+/*************/
+main {
+	display: grid;
+	grid-template-columns: 1fr 2.5fr;
+}
+
+.list {
+	background: #F3F6F9;
+	display: flex;
+	flex-direction: column;
+	padding: 20px;
+}
+
+.list input {
+	margin: 0 auto;
+	outline: none;
+	border: none;
+	background: #E0E0E0;
+	padding: 10px;
+	width: 70%;
+	font-size: 24px;
+	margin-bottom: 25px;
+}
+
+.list input::-webkit-input-placeholder {
+	text-align: center;
+}
+
+.list ul {
+	height: 85vh;
+	overflow: scroll;
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+}
+
+.list ul::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera*/
+}
+
+.list ul li {
+	font-size: 24px;
+	cursor: pointer;
+	margin-bottom: 20px;
+	color: #999999;
+	transition: color .2s ease;
+}
+
+.list ul li:hover {
+	color: #000000;
+}
+
+.list ul li.clicked {
+	color: #000000;
+}
+
+.detail {
+	box-shadow: -20px 0px 20px rgba(0, 0, 0, 0.1);
+	padding: 50px;
+}
+
+.top {
+	padding: 10px;
+	border-bottom: 1px solid #999999;
+	margin-bottom: 20px;	
+}
+
+.top .title {
+	font-size: 24px;
+	margin-bottom: 10px;
+}
+
+.top .date {
+	color: #999999;
+	font-size: 20px;
+	margin-bottom: 10px;
+}
+
+.top .student {
+	display: flex;
+	justify-content: space-between;
+}
+
+.description {
+	height: 75vh;
+	overflow: scroll;
+	font-size: 22px;
+	padding: 20px;
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+}
+
+.description::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera*/
+}
+
+.wrap button {
+	background: none;
+	font-size: 16px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,198 @@
+@import url(global.css);
+
+:root {
+	--main-font: 24px;
+	--sub-font: 16px;
+	--large-padding: 20px;
+	--middle-padding: 10px;
+	--small-padding: 5px;
+}
+
+.board-nav a {
+	color: #ffffff;
+}
+
+.board-detail-wrap {
+  padding: 20px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.board-detail-wrap .inner {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.board-detail-wrap .inner > .top {
+  border-bottom: 1px solid #999999;
+  width: 80%;
+  height: 80px;
+  padding: 5px 10px;
+}
+
+.top .title-wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 15px;
+}
+
+.top .title-wrap .title {
+  font-size: var(--main-font);
+}
+
+.top .title-wrap .title-btn-wrap [class$="-btn"] {
+  background: none;
+  color: #999999;
+  font-size: var(--sub-font);
+}
+
+.top .title-wrap .title-btn-wrap [class$="-btn"]:hover {
+  text-decoration: underline;
+  color: #000000;
+}
+
+.top .description {
+  display: grid;
+  grid-template-columns: .5fr 6fr 1fr 1fr;
+  align-items: center;
+}
+
+.top .description span {
+  font-size: var(--sub-font);
+  color: #999999;
+}
+
+.top .description .file {
+  justify-self: center;
+  border: 1px solid #999999;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+.board-detail-wrap .inner > .content {
+  width: 80%;
+  height: 400px;
+  padding: var(--middle-padding);
+  font-size: var(--sub-font);
+}
+
+.board-detail-wrap .inner > .comment {
+  width: 80%;
+  border-top: 1px solid #999999;
+  padding: 5px 15px;
+}
+
+.board-detail-wrap .inner .comment-list {
+  margin-bottom: 10px;
+}
+
+.comment .comment-item {
+  margin-bottom: 10px;
+}
+
+.comment .comment-item .info { 
+	
+	
+	
+	
+	
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  font-size: var(--sub-font);
+  margin-bottom: 10px;
+}
+
+.comment .comment-item .date {
+  color: #999999;
+  font-size: var(--sub-font);
+  margin-left: 20px;
+}
+
+.comment .comment-item [class$="-btn"] {
+  color: #999999;
+  background: none;
+  font-size: var(--sub-font);
+}
+
+.comment .comment-item [class$="-btn"]:hover {
+  color: #000000;
+}
+
+.comment .comment-item .content {
+  font-size: var(--sub-font);
+}
+
+.comment form {
+  display: flex;
+  justify-content: space-between;
+}
+
+.comment form textarea {
+  width: 90%;
+  resize: none;
+  height: 70px;
+  border-radius: 5px;
+  padding: var(--small-padding);
+  font-size: var(--sub-font);
+  border: 1px solid #999999;
+}
+#updateContent {
+  width: 90%;
+  resize: none;
+  height: 70px;
+  border-radius: 5px;
+  padding: var(--small-padding);
+  font-size: var(--sub-font);
+  border: 1px solid #999999;
+}
+
+.comment form button {
+  border: 1px solid #999999;
+  font-size: var(--sub-font);
+  padding: 0 20px;
+  background: none;
+  border-radius: 10px;
+  color: #999999;
+}
+
+.comment form button:hover {
+  color: #000000;
+}
+
+.board-hidden {
+  display: none;
+}
+
+#comment_div {
+	display: flex;
+}
+
+.modify-btn-wrap {
+	width: 10%;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	flex-direction: column;
+}
+
+.modify-btn-wrap button {
+	background: none;
+	color: #999999;
+	font-size: var(--sub-font);
+	transition: color .2s ease;
+}
+
+.modify-btn-wrap button:hover {
+	color: #000000;
+}
+
+
+
+
+

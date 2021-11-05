@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMapConfig
+   PUBLIC "-//ibatis.apache.org//DTD SQL Map Config 2.0//EN"
+   "http://ibatis.apache.org/dtd/sql-map-config-2.dtd">
+
+<sqlMapConfig>
+	<properties resource="config/dbinfo.properties" />
+
+	<settings useStatementNamespaces="true" />
+
+	<!-- <typeAlias alias="alias명" type="클래스의 풀네임(패키지명까지 포함)"/> -->
+	<typeAlias alias="applicantVO" type="vo.ApplicantVO" />
+	<typeAlias alias="attendanceVO" type="vo.AttendanceVO" />
+	<typeAlias alias="boardVO" type="vo.BoardVO" />
+	<typeAlias alias="chatDetailVO" type="vo.ChatDetailVO" />
+	<typeAlias alias="chatRoomVO" type="vo.ChatRoomVO" />
+	<typeAlias alias="chatListVO" type="vo.ChatListVO"/>
+	<typeAlias alias="classRoomVO" type="vo.ClassRoomVO" />
+	<typeAlias alias="commentVO" type="vo.CommentVO" />
+	<typeAlias alias="counselingVO" type="vo.CounselingVO" />
+	<typeAlias alias="fileVO" type="vo.FileVO" />
+	<typeAlias alias="licenseVO" type="vo.LicenseVO" />
+	<typeAlias alias="memberVO" type="vo.MemberVO" />
+	<typeAlias alias="noticeCompanyVO" type="vo.NoticeCompanyVO" />
+	<typeAlias alias="projectResultVO" type="vo.ProjectResultVO" />
+	<typeAlias alias="scheduleVO" type="vo.ScheduleVO" />
+	<typeAlias alias="schedule" type="vo.Schedule" />
+	<typeAlias alias="studentVO" type="vo.StudentVO" />
+	<typeAlias alias="workCompanyVO" type="vo.WorkCompanyVO" />
+	<typeAlias alias="studentOfClassRoomVO"
+		type="vo.StudentOfClassRoomVO" />
+	<typeAlias alias="studentInfoVO" type="vo.StudentInfoVO" />
+	<typeAlias alias="counselingNameVO"
+		type="vo.CounselingNameVO" />
+	<typeAlias alias="rankVO" type="vo.RankVO" />
+	<typeAlias alias="commentNameVO" type="vo.CommentNameVO"/>
+
+	<transactionManager type="JDBC">
+		<dataSource type="SIMPLE">
+			<property name="JDBC.Driver" value="${driver}" />
+			<property name="JDBC.ConnectionURL" value="${url}" />
+			<property name="JDBC.Username" value="${user}" />
+			<property name="JDBC.Password" value="${pass}" />
+		</dataSource>
+	</transactionManager>
+
+	<sqlMap resource="/mapping/board.xml" />
+	<sqlMap resource="/mapping/company.xml" />
+	<sqlMap resource="/mapping/chat.xml" />
+	<sqlMap resource="/mapping/member.xml" />
+	<sqlMap resource="/mapping/schedule.xml" />
+	<sqlMap resource="/mapping/applicant.xml" />
+	<sqlMap resource="/mapping/attendance.xml" />
+	<sqlMap resource="/mapping/classroom.xml" />
+	<sqlMap resource="/mapping/student.xml" />
+	<sqlMap resource="/mapping/counseling.xml" />
+
+
+
+
+</sqlMapConfig>
+
+
+
+
+
+
+
+
+
+
+
+
+

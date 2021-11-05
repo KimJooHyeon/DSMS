@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap
+	PUBLIC "-//ibatis.apache.org//DTD Sql Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+	
+	<sqlMap namespace="company">
+		
+		<insert id="insertWorkCompany" parameterClass="workCompanyVO">
+			INSERT INTO work_company (company_idx, student_idx, company_name, company_addr, company_section, longitude, latitude)
+			VALUES (#company_idx#, #student_idx#, #company_name#, #company_addr#, #company_section#, #longitude#, #latitude#)
+		</insert>
+	
+		<delete id="deleteWorkCompany" parameterClass="workCompanyVO">
+			DELETE FROM work_company WHERE company_idx = #company_idx# AND student_idx = #student_idx#
+		</delete>
+		
+		<select id="selectAllWorkCompany" resultClass="workCompanyVO">
+			SELECT longitude, latitude FROM work_company
+		</select>
+		
+
+		<select id="selectOneWorkCompany" parameterClass="workCompanyVO" resultClass="workCompanyVO">
+			SELECT company_idx,
+				   student_idx,
+				   company_name,
+				   company_addr,
+				   company_section,
+				   longitude,
+				   latitude
+			  FROM work_company 
+			 where company_idx = #company_idx#
+		</select>
+		
+		<update id="updateWorkCompany" parameterClass="workCompanyVO">
+			UPDATE work_company SET student_idx = #student_idx#, company_name = #company_name#,
+			 company_addr = #company_addr#, company_section = #company_section#,
+			 longitude = #longitude#, latitude = #latitude#	WHERE company_idx = #company_idx#
+		</update>
+		
+		<select id="selectWorkCompanyCityRank" resultClass="rankVO">
+			select a.fiveRankCity, a.cnt
+			from (select substr(company_addr, 1, instr(company_addr, ' ', '1', '1')) as fiveRankCity, count(*) AS cnt
+			        from work_company 
+			        group by substr(company_addr, 1, instr(company_addr, ' ', '1', '1')) 
+			        order by 2 desc) a
+			<![CDATA[where rownum <=5]]> 
+		</select>
+		
+		<insert id="insertNoticeCompany" parameterClass="noticeCompanyVO">
+		INSERT INTO notice_company (company_idx, company_name, company_addr, company_salary, company_section, recruit_intake, longitude, latitude)
+		VALUES (ncompany_idx_seq.nextval, #company_name#, #company_addr#, #company_salary#,
+		#company_section#,#recruit_intake#,'0', '0')
+		</insert>
+		
+		<delete id="deleteNoticeCompany" parameterClass="noticeCompanyVO">
+			DELETE FROM notice_company WHERE company_idx = #company_idx#
+		</delete>
+		
+		<select id="selectAllNoticeCompany" resultClass="noticeCompanyVO">
+			select * from notice_company
+		</select>
+		
+		<select id="selectOneNoticeCompany" resultClass="noticeCompanyVO">
+			select * from notice_company where company_idx = #company_idx#
+		</select>
+		
+		<update id="updateNoticeCompany" parameterClass="noticeCompanyVO">
+			UPDATE notice_company SET
+				company_name = #company_name#, company_addr = #company_addr#, company_salary = #company_salary#,
+				company_section = #company_section#, recruit_intake = #recruit_intake#, longitude = #longitude#,
+				latitude = #latitude# WHERE company_idx = #company_idx#
+		 </update>
+	</sqlMap>
+

@@ -1,0 +1,70 @@
+@import url(global.css);
+
+:root{
+	--main-font: 24px;
+	--sub-font: 16px;
+	--large-padding: 20px;
+	--middle-padding: 10px;
+	--small-padding: 5px;
+}
+
+.board-nav a {
+	color: #ffffff;
+}
+
+/* Write */
+.board-modify-wrap {
+	height: 100vh;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+form {
+	width: 80%;
+}
+
+.top {
+	display: flex;
+	flex-direction: column;
+	padding: 0 10px;
+	border-bottom: 1px solid #999999;
+	margin-bottom: 10px;
+}
+
+.title-wrap {
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 10px; 
+}
+
+.modify-btn {
+	background: none;
+	color: #999999;
+	font-size: var(--sub-font);
+	transition: color .1s ease-in-out;
+}
+
+.modify-btn:hover {
+	color: #000000;
+	text-decoration: underline;
+}
+
+.title {
+	font-size: var(--main-font);
+	border: none;
+	border-bottom: 1px solid #999999;
+	padding: 5px 10px;
+	width: 50%
+}
+
+.description {
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 10px;
+}
+
+#editor {
+	width: 100%;
+}

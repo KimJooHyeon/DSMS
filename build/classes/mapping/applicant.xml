@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap 
+PUBLIC "-//ibatis.apache.org//DTD Sql Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="applicant">
+	<insert id="insertApplicant" parameterClass="applicantVO">
+		INSERT INTO applicant (
+			applicant_idx,
+			applicant_name,
+			applicant_pass,
+			applicant_age,
+			applicant_tel,
+			applicant_score
+		) VALUES (
+			student_idx_seq.nextval,
+			#applicant_name#,
+			#applicant_pass#,
+			#applicant_age#,
+			#applicant_tel#,
+			#applicant_score#
+		)
+	</insert>
+
+	<delete id="deleteApplicant" parameterClass="applicantVO">
+		DELETE FROM applicant
+		 WHERE applicant_name = #applicant_name#
+		   AND applicant_tel = #applicant_tel#
+	</delete>
+
+	<update id="updateApplicant" parameterClass="applicantVO">
+		update Applicant
+		   set applicant_pass = #applicant_pass#,
+			   applicant_score = #applicant_pass#
+		 where applicant_name = #applicant_name#
+		   AND applicant_tel = #applicant_tel#
+	</update>
+
+	<select id="selectAllApplicant" resultClass="applicantVO">
+		select *
+		  from applicant
+	</select>
+
+	<select id="selectAllApplicantCount" resultClass="int">
+		select count(*)
+		  from applicant
+	</select>
+
+	<select id="selectAllApplicantBetween" resultClass="applicantVO"
+		parameterClass="map">
+		SELECT rownum,
+	  		   a.*
+		  FROM (SELECT a.*
+		          FROM APPLICANT a
+				 ORDER BY a.applicant_name) a
+		 WHERE rownum BETWEEN #first# AND #second#
+	</select>
+	
+	<delete id="roomSetDel" parameterClass="int">
+		DELETE FROM applicant
+ 		 WHERE applicant_idx = #idx#
+	</delete>
+
+</sqlMap>

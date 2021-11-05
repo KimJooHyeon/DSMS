@@ -1,0 +1,85 @@
+@import url(reset.css);
+
+.body__container {
+  height: 100vh;
+  display: grid;
+  grid-template-columns: .3fr 1.7fr;
+}
+
+/* Navigation */
+nav {
+  width: 100%;
+  background: #454E5F;
+  padding: 20px 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+nav a {
+  transition: color .2s ease-in-out;
+}
+
+nav ul {
+  display: flex;
+  flex-direction: column;
+}
+
+nav .logo {
+  align-self: center;
+  margin-bottom: 50px;
+}
+
+nav .logo img {
+  width: 70px;
+}
+
+nav li a,
+nav li button,
+.logout {
+  display: block;
+  font-size: 20px;
+  background: none;
+  color: #999999;
+  margin-bottom: 20px;
+}
+
+nav li button {
+	padding: 0;
+}
+
+nav li a:hover,
+nav li button:hover,
+.logout:hover {
+  color: #ffffff;
+}
+
+.student-nav-wrap,
+.admin-nav-wrap {
+  height: 100px;
+  overflow: hidden;
+  transition: height .5s ease-in-out;
+}
+
+.admin-nav-wrap {
+	height: 130px;
+}
+
+.student-nav-wrap a,
+.admin-nav-wrap a {
+  font-size: 14px;
+  padding-left: 15px;
+}
+
+nav .my-page {
+  align-self: center;
+}
+
+.nav-hidden {
+  height: 0;
+}
+
+main iframe {
+  width: 100%;
+  height: 100%;
+}

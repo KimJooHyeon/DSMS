@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap
+	PUBLIC "-//ibatis.apache.org//DTD Sql Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+	
+	<sqlMap namespace="chat">
+<!-- 		<select id="getAllChatList" resultClass="chatListVO" parameterClass="int">
+			SELECT *
+			  FROM (SELECT c.chat_detail_content,
+			               c.chat_detail_date,
+			               m.member_name,
+			               c.chat_room_idx
+			          FROM chat_detail C, MEMBER M
+			         WHERE chat_room_idx = #chat_room_idx#
+			           AND c.member_idx = m.member_idx
+			         ORDER BY chat_detail_date DESC)
+			 WHERE ROWNUM <![CDATA[<=]]>1
+		</select> -->
+		
+<!-- 		<select id="getMemberName" resultClass="string" parameterClass="int">
+			 select member_name
+			   from member m, chat_room c
+			  where m.member_idx = c.member_idx
+			    and c.chat_room_idx = #room#
+		</select> -->
+	
+		<select id="getOneChat" resultClass="chatDetailVO" parameterClass="chatDetailVO">
+			SELECT C.CHAT_DETAIL_CONTENT,
+			       C.CHAT_DETAIL_DATE,
+			       M.MEMBER_NAME,
+			       C.CHAT_ROOM_IDX,
+			       C.CHAT_DETAIL_IDX,
+			       C.MEMBER_IDX
+			  FROM CHAT_DETAIL C, MEMBER M
+			 WHERE CHAT_ROOM_IDX = #chat_room_idx#
+			   AND C.MEMBER_IDX = M.MEMBER_IDX
+			 ORDER BY CHAT_DETAIL_DATE
+		</select>
+		
+		<select id="getSeq" resultClass="int">
+			select chat_room_id_seq.nextval from dual
+		</select>
+	
+		<insert id="insertChatRoom" parameterClass="chatRoomVO">
+			INSERT INTO chat_room (chat_room_idx, member_idx)
+			VALUES (#chat_room_idx#, #member_idx#)
+		</insert>
+	
+<!-- 		<insert id="exitChatRoom" parameterClass="chatRoomVO">
+			UPDATE chat_room SET member_chat_attend = 'N' WHERE member_idx = #member_idx#
+		</insert> -->
+		
+<!-- 		<delete id="deleteChatDetail" parameterClass="ChatDetailVO">
+			DELETE FROM chat_room WHERE chat_room_idx = #chat_room_idx# AND member_idx = #member_idx#
+		</delete>
+		
+		<delete id="deleteChatRoom" parameterClass="chatRoomVO">
+			DELETE FROM chat_detail WHERE chat_room_idx = #chat_room_idx#
+		</delete> -->
+		
+		<insert id="sendChat" parameterClass="chatDetailVO">
+			INSERT INTO chat_detail (chat_detail_idx, chat_room_idx, member_idx, chat_detail_content, 
+						chat_detail_date)
+			VALUES (CHAT_DETAIL_IDX_SEQ.NEXTVAL, #chat_room_idx#, #member_idx#, #chat_detail_content#, SYSDATE)
+		</insert>
+		
+		<select id="getRoomList" resultClass="int" parameterClass="int">
+			select chat_room_idx
+			  from chat_room
+			 where member_idx = #member_idx#
+		</select>
+		
+		<select id="getRoomUser" resultClass="String" parameterClass="int">
+			select member_name
+			  from chat_room cr, member m
+			 where m.member_idx = cr.member_idx
+			   and cr.chat_room_idx = #chat_room_idx#
+			 order by member_name
+		</select>
+		
+		<select id="getLastContent" resultClass="String" parameterClass="int">
+			select *
+			  from (select chat_detail_content
+			          from chat_detail
+			         where chat_room_idx = #chat_room_idx#
+			         order by chat_detail_date desc)
+			 where rownum <![CDATA[<=]]>1
+		</select>
+		
+		<select id="searchChatRoom" resultClass="int" parameterClass="chatDetailVO">
+			SELECT DISTINCT CR.CHAT_ROOM_IDX
+			  FROM MEMBER M, CHAT_ROOM CR, (SELECT CR.CHAT_ROOM_IDX
+			                                  FROM MEMBER M, CHAT_ROOM CR
+			                                 WHERE M.MEMBER_IDX = CR.MEMBER_IDX
+			                                   AND CR.MEMBER_IDX = #member_idx#) X
+			 WHERE M.MEMBER_IDX = CR.MEMBER_IDX
+			   AND CR.CHAT_ROOM_IDX = X.CHAT_ROOM_IDX
+			   AND M.MEMBER_NAME LIKE '%'||#member_name#||'%'
+		</select>
+	</sqlMap>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+

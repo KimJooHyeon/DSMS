@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap 
+PUBLIC "-//ibatis.apache.org//DTD Sql Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+	
+<sqlMap namespace="member">
+
+
+	
+	<select id="memberCheck" resultClass="memberVO"> 
+		select * 
+		  from member 
+		 where member_id = #member_id# 
+		   and member_pass = #member_pass#
+	</select>
+
+	<insert id="insertMember" parameterClass="memberVO">
+		INSERT INTO member (
+			member_idx,
+			member_id,
+			member_pass,
+			member_name,
+			member_regno,
+			member_tel,
+			member_email,
+			member_job
+		) VALUES (
+			member_idx_seq.nextval,
+			#member_id#,
+			#member_pass#,
+			#member_name#,
+			#member_regno#,
+			#member_tel#,
+			#member_email#,
+			#member_job#
+		)	
+	</insert>
+	
+	<select id="memberIdCheck" parameterClass="String" resultClass="int">
+		select count(*) from member where member_id = #member_id#
+	</select>
+	
+	<select id="memberRegnoCheck"  parameterClass="memberVO" resultClass="int">
+		select count(*) from member where member_name = #member_name# and member_regno = #member_regno#
+	</select>
+	
+	<select id="memberTelCheck" parameterClass="String" resultClass="int">
+		select count(*) from member where member_tel = #member_tel#
+	</select>
+	
+	<select id="memberEmailCheck" parameterClass="String" resultClass="int">
+		select count(*) from member where member_email = #member_email#
+	</select>
+
+
+	<select id="findMemberId" parameterClass="memberVO" resultClass="String">
+		 select member_id 
+		   from member 
+		  where member_name = #member_name# 
+		    and member_regno = #member_regno#
+	</select>
+	
+	<select id="findMemberPass" parameterClass="memberVO" resultClass="memberVO">
+		 select * 
+		   from member 
+		  where member_id = #member_id#
+		  	and	member_name = #member_name#
+		    and	member_regno = #member_regno#
+	</select>
+	
+	<update id="updateMemberPass" parameterClass="memberVO">
+		update member 
+		   set member_pass = #member_pass# 
+		 where member_id = #member_id#
+		   and member_name = #member_name#
+		   and member_regno = #member_regno#
+	</update>
+	
+	<delete id="deleteMember" parameterClass="memberVO">
+		DELETE FROM member WHERE member_idx = #member_idx#
+	</delete>
+	
+	
+	<update id="updateMemberTel" parameterClass="memberVO">
+		update member set member_tel = #member_tel# where member_idx = #member_idx#
+	</update>
+	
+	<update id="updateMemberEmail" parameterClass="memberVO">
+		update member set member_email = #member_email# where member_idx = #member_idx#
+	</update>
+	
+	<select id="getAllMember" resultClass="memberVO" parameterClass="int">
+		select * 
+		  from member
+		 where member_idx != #idx# 
+		 order by member_name
+	</select>
+
+	<select id="getOneMember" resultClass="memberVO" parameterClass="memberVO">
+		select *
+		  from member
+		 where member_id = #member_id#
+	</select>
+	
+	<update id="modifyUserInfo" parameterClass="memberVO">
+		UPDATE MEMBER
+		   SET MEMBER_TEL = NVL(#member_tel#, (SELECT MEMBER_TEL
+										 FROM MEMBER
+										WHERE MEMBER_ID = #member_id#)),
+			   MEMBER_PASS = NVL(#member_pass#, (SELECT MEMBER_PASS 
+										 FROM MEMBER
+										WHERE MEMBER_ID = #member_id#)),
+			   MEMBER_EMAIL = NVL(#member_email#, (SELECT MEMBER_EMAIL 
+										 FROM MEMBER
+										WHERE MEMBER_ID = #member_id#))
+		 WHERE MEMBER_ID = #member_id#
+	</update>
+	
+	<select id="getClassRoomNumber" parameterClass="int" resultClass="int">
+		SELECT DISTINCT CLASS_NUMBER
+		  FROM CLASS_ROOM
+		 WHERE MEMBER_IDX = #idx#
+	</select>
+	
+	<select id="getManageMember" resultClass="memberVO">
+		SELECT *
+		  FROM MEMBER
+		 WHERE MEMBER_JOB != 0
+	</select>
+	
+	<select id="getMemberName" resultClass="String" parameterClass="int">
+		SELECT member_name FROM MEMBER WHERE MEMBER_IDX = #member_idx#
+	</select>
+	
+	<update id="modifyManage" parameterClass="memberVO">
+		UPDATE MEMBER
+		   SET MEMBER_STATE = #member_state#
+		 WHERE MEMBER_IDX = #member_idx#
+	</update>
+	
+</sqlMap>

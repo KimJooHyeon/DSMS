@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap
+	PUBLIC "-//ibatis.apache.org//DTD Sql Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+	
+<sqlMap namespace="board">
+
+	<insert id="insertBoard" parameterClass="boardVO">
+		<selectKey keyProperty="board_idx" resultClass="int">
+			select board_idx_seq.nextval from dual
+		</selectKey>
+		INSERT INTO board (board_idx, member_idx, board_category, board_title, board_content, board_hits, board_date) 
+		VALUES (#board_idx#,#member_idx#,#board_category#,#board_title#,#board_content#, 0, sysdate)
+	</insert>
+	
+	
+	<delete id="deleteBoard" parameterClass="int">
+		DELETE FROM board WHERE board_idx = #board_idx#
+	</delete>
+	
+	<update id="updateBoard" parameterClass="boardVO">
+		UPDATE board SET board_title = #board_title#,board_category = #board_category# ,board_content = #board_content# WHERE board_idx = #board_idx#
+	</update>
+		
+	<!--해당 idx 조회 게시판 상세조회 -->
+	<select id="selectBoard" parameterClass="boardVO" resultClass="boardVO"> 
+	  SELECT a.board_idx, a.member_idx, a.board_category, a.board_title, a.board_content, a.board_hits, 
+	 to_char(board_date,'YYYY-MM-DD') as "board_date", b.member_name  
+	 FROM board a, member b  
+     WHERE a.member_idx = b.member_idx 
+     and board_idx = #board_idx# 																																																																																																																																																						
+	</select> 
+	
+	<select id="selectLatestBoard"  resultClass="boardVO" parameterClass="map">
+		<isNull property="search">
+			SELECT *
+			FROM(
+			    SELECT rownum rn, a.* 
+			    FROM(SELECT  A.board_idx, B.MEMBER_NAME, 
+			                    A.member_idx , 
+			                    A.board_title, A.board_content, A.board_hits, 
+			                    to_char(A.board_date,'YYYY-MM-DD') as "board_date", 
+			                    (case board_category when '1' then '긴급' 
+			                                        when '2' then '공지' 
+			                                        when '3' then '자유' end) as "board_category"
+			                FROM board A, member B 
+			                WHERE B.member_idx=A.member_idx  
+			                and board_category = #category#
+			                <isNotEqual property="category" compareValue="3">
+								<![CDATA[  AND rownum <= #cnt#	]]>	
+							</isNotEqual>
+			                order by a.board_idx desc) a
+			    ) AA
+			<isEqual property="category" compareValue="3">    
+				<![CDATA[ where rn >= (#page#-1)*#pageSize#+1 and rn  <= 	#page#*#pageSize# ]]>
+			</isEqual>
+		</isNull>
+	
+		
+		<isNotNull property="search">
+		 SELECT *
+         FROM (
+            SELECT ROWNUM rn , AA.*
+			FROM( 
+				SELECT *
+				FROM(
+					SELECT A.board_idx, B.MEMBER_NAME, 
+			            A.member_idx , 
+			            A.board_title, A.board_content, A.board_hits, 
+						to_char(A.board_date,'YYYY-MM-DD') as "board_date", 
+						(case board_category when '1' then '긴급' 
+											when '2' then '공지' 
+											when '3' then '자유' end) as "board_category"
+					FROM board A, member B 
+					WHERE B.member_idx=A.member_idx  
+					and board_category = #category#
+					 	<isEqual property="category" compareValue="2">
+						<![CDATA[  AND rownum <= #cnt#	]]>	
+					</isEqual>
+					 <isNotNull property="search">
+					 	and board_title like '%' || #searchData# || '%' 
+					 </isNotNull>
+			            
+			        union all  
+			        
+			         SELECT A.board_idx, B.MEMBER_NAME, 
+			            A.member_idx , 
+			            A.board_title, A.board_content, A.board_hits, 
+						to_char(A.board_date,'YYYY-MM-DD') as "board_date", 
+						(case board_category when '1' then '긴급' 
+											when '2' then '공지' 
+											when '3' then '자유' end) as "board_category"
+					FROM board A, member B 
+					WHERE B.member_idx=A.member_idx  
+					and board_category = #category#
+					 	<isEqual property="category" compareValue="2">
+						<![CDATA[  AND rownum <= #cnt#	]]>	
+					</isEqual>
+					 <isNotNull property="search">
+					 	and member_name like '%' || #searchData# || '%'
+					 </isNotNull>
+			            
+			        union all  
+			        
+			         SELECT A.board_idx, B.MEMBER_NAME, 
+			            A.member_idx , 
+			            A.board_title, A.board_content, A.board_hits, 
+						to_char(A.board_date,'YYYY-MM-DD') as "board_date", 
+						(case board_category when '1' then '긴급' 
+											when '2' then '공지' 
+											when '3' then '자유' end) as "board_category"
+					FROM board A, member B 
+					WHERE B.member_idx=A.member_idx     
+					and board_category = #category# 
+					 	<isEqual property="category" compareValue="2">
+						<![CDATA[  AND rownum <= #cnt#	]]>	
+					</isEqual>
+					 <isNotNull property="search">
+					 	and board_content like '%' || #searchData# || '%' 
+					 </isNotNull>
+					 ) A
+				) AA
+				ORDER BY AA.BOARD_IDX DESC
+            )
+            <isEqual property="category" compareValue="3"> 
+            	<![CDATA[ where rn >= (#page#-1)*#pageSize#+1 and rn  <= 	#page#*#pageSize# ]]>
+            </isEqual>
+		</isNotNull>
+			
+	</select>
+	
+	<update id="updateBoardHit" parameterClass="int">
+		update board 
+		set board_hits = board_hits + 1 
+		where board_idx = #board_idx#
+	</update>
+	
+	<insert id="insertComment" parameterClass="commentVO">
+		INSERT INTO comments (
+			comment_idx, 
+			board_idx, 
+			comment_date, 
+			comment_content, 
+			member_idx
+		) VALUES (
+			comment_idx_seq.nextval, 
+			#board_idx#, 
+			sysdate, 
+			#comment_content#, 
+			#member_idx#
+		)
+	</insert>
+	
+	<delete id="deleteComment" parameterClass="commentVO">
+	DELETE FROM comments WHERE comment_idx = #comment_idx# AND board_idx = #board_idx#
+	</delete>
+	
+	<update id="updateComment" parameterClass="commentVO">
+	UPDATE comments SET comment_content = #comment_content# , comment_date = sysdate WHERE comment_idx = #comment_idx# AND board_idx = #board_idx#  
+	</update>
+	
+	<select id="selectComment"  resultClass="hashmap" remapResults="true" parameterClass="int" >
+	 SELECT comment_idx, board_idx, to_char(comment_date,'YYYY-MM-DD') as "COMMENT_DATE", comment_content , a.member_idx,
+	        b.member_name
+	   FROM comments a, member b
+	  WHERE a.member_idx = b.member_idx
+	    AND a.board_idx = #board_idx#
+	  ORDER BY comment_idx
+	</select>
+	
+	<insert id="fileSave" parameterClass="FileVO">
+		insert into files(file_name, board_idx, file_path,file_type)  values
+		(#file_name#,#board_idx#,#file_path#, #file_type#)
+	</insert>
+	
+	<select id="getAllFile" parameterClass="int" resultClass="FileVO">
+		select *
+		from files
+		where board_idx = #board_idx#
+	</select>
+	
+	
+	
+		<!-- 게시물 자유게시판 전체 갯수조회 -->
+	<select id="countList" resultClass="int">
+		SELECT COUNT (*)  
+		FROM board
+		WHERE BOARD_CATEGORY = 3
+	</select>
+	
+	<select id="getLastComment" parameterClass="commentVO" resultClass="commentNameVO">
+		select a.*,
+		       m.member_name
+		  from (select *
+		          from comments
+		         where board_idx = #board_idx#
+		         order by comment_idx desc) a, member m
+		 where rownum = 1
+		   and a.member_idx = m.member_idx
+	</select>
+	
+	
+	<select id="getNewArticle" resultClass="boardVO">
+		SELECT *
+		  FROM (SELECT *
+				  FROM BOARD
+				 ORDER BY BOARD_IDX DESC)
+		 <![CDATA[WHERE rownum <= 5]]>	
+	</select>
+</sqlMap>

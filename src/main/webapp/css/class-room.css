@@ -1,0 +1,50 @@
+@import url(global.css);
+
+.admin-open {
+	color: #ffffff;
+}
+
+.admin-nav-wrap.nav-hidden {
+	height: 130px;
+}
+
+.room-nav a {
+	color: #ffffff;
+}
+
+main {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.btn-wrap {
+	margin-bottom: 10px;
+	display: block;
+	width: 80vw;
+	text-align: right;
+}
+
+.btn-wrap button {
+	color: #999999;
+	font-size: 20px;
+	border: 1px solid #999999;
+	background: none;
+	border-radius: 5px;
+	margin-left: 10px;
+	transition: color .2s ease;	
+}
+
+.btn-wrap button:hover {
+	color: #000000;
+}
+
+.grid-wrap {
+	height: 80vh;
+	width: 80vw;
+	overflow: scroll;
+}
+
+#recruitGrid {
+}
